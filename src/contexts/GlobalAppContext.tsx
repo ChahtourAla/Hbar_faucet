@@ -1,15 +1,25 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useState } from "react";
 
-const defaultValue = {}
+const defaultValue = {
+  metamaskAccountAddress: "",
+  setMetamaskAccountAddress: (newValue: string) => {},
+};
 
-export const GlobalAppContext = createContext(defaultValue)
+export const GlobalAppContext = createContext(defaultValue);
 
-export const GlobalAppContextProvider = (props: { children: ReactNode | undefined }) => {
+export const GlobalAppContextProvider = (props: {
+  children: ReactNode | undefined;
+}) => {
+  const [metamaskAccountAddress, setMetamaskAccountAddress] = useState("");
+
   return (
     <GlobalAppContext.Provider
-      value={{}}
+      value={{
+        metamaskAccountAddress,
+        setMetamaskAccountAddress,
+      }}
     >
       {props.children}
     </GlobalAppContext.Provider>
-  )
-}
+  );
+};
